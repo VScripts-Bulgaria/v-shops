@@ -1,0 +1,633 @@
+/* Основни стилове и ресет */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: transparent;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* Основен контейнер */
+#shop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s ease;
+}
+
+#shop-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container {
+    width: 80%;
+    max-width: 1300px;
+    height: 80%;
+    display: flex;
+    background-color: #f5f5f7;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Лява секция - Артикули */
+.shop-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.shop-header h2 {
+    color: #333;
+    font-size: 22px;
+}
+
+.shop-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.shop-controls button:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* Търсене */
+.search-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #4285f4;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+/* Категории */
+.categories {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.category-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.category-btn.active {
+    background-color: #4285f4;
+    color: white;
+}
+
+/* Контейнер с предмети */
+.items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 10px;
+    flex: 1;
+}
+
+.items-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.items-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.items-container::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 10px;
+}
+
+.item-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    position: relative;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.item-img-container {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.item-img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.item-details {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-description {
+    font-size: 12px;
+    color: #777;
+    margin: 5px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.item-price-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #4285f4;
+}
+
+.add-to-cart-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #3367d6;
+}
+
+/* Дясна секция - Количка */
+.cart-section {
+    flex: 1;
+    background-color: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid #e0e0e0;
+    min-width: 300px;
+}
+
+.cart-header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-header h2 {
+    color: #333;
+    font-size: 20px;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 10px;
+}
+
+.cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    color: #999;
+}
+
+.cart-empty i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.cart-item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.cart-item-price {
+    font-size: 13px;
+    color: #4285f4;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.quantity-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-value {
+    margin: 0 8px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-item-remove {
+    color: #f44336;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.cart-item-remove:hover {
+    color: #e53935;
+}
+
+/* Обобщение на количката */
+.cart-summary {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    font-weight: 600;
+}
+
+/* Методи на плащане */
+.payment-methods {
+    margin-bottom: 15px;
+}
+
+.payment-methods h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.payment-options {
+    display: flex;
+    gap: 10px;
+}
+
+.payment-option {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.payment-option i {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.payment-option span {
+    font-size: 14px;
+    color: #333;
+}
+
+.payment-option:hover {
+    background-color: #f9f9f9;
+}
+
+.payment-option.selected {
+    border-color: #4285f4;
+    background-color: #f0f7ff;
+}
+
+.payment-option.selected i,
+.payment-option.selected span {
+    color: #4285f4;
+}
+
+/* Бутон за покупка */
+.purchase-btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.purchase-btn:hover {
+    background-color: #3367d6;
+}
+
+/* Адаптивен дизайн */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+        height: 90%;
+    }
+    
+    .items-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: 95%;
+    }
+    
+    .shop-section, .cart-section {
+        flex: none;
+        width: 100%;
+    }
+    
+    .shop-section {
+        height: 50%;
+    }
+    
+    .cart-section {
+        height: 50%;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+}
+
+/* Известие за успешно плащане */
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.popup-content {
+    display: flex;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 400px;
+    max-width: 90%;
+    transform: translateY(0);
+    animation: popup-entry 0.5s ease-out;
+}
+
+@keyframes popup-entry {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4caf50;
+    color: white;
+    padding: 20px;
+    font-size: 40px;
+}
+
+.popup-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.popup-text h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.popup-text p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.popup-details {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.popup-details div {
+    margin-bottom: 5px;
+}
+
+.popup-details div:last-child {
+    margin-bottom: 0;
+}
+
+.popup-details span {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Анимация за успешно плащане */
+.success-animation {
+    animation: success-pulse 0.5s ease-in-out;
+}
+
+@keyframes success-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* No Items стилове */
+.no-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #999;
+    grid-column: 1 / -1;
+}
+
+.no-items i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.no-items p {
+    font-size: 16px;
+} 

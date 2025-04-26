@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Shops Система</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        console.log("V-Shops NUI loaded");
+    </script>
+</head>
+<body>
+    <div id="shop-container" class="hidden">
+        <div class="container">
+            <!-- Лява част - Артикули -->
+            <div class="shop-section">
+                <div class="shop-header">
+                    <h2><i class="fas fa-store"></i> <span id="shop-name">Магазин</span></h2>
+                    <div class="shop-controls">
+                        <button id="close-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-item" placeholder="Търсене на артикул...">
+                </div>
+                
+                <div class="categories">
+                    <button class="category-btn active" data-category="all">Всички</button>
+                    <button class="category-btn" data-category="food">Храна</button>
+                    <button class="category-btn" data-category="drinks">Напитки</button>
+                    <button class="category-btn" data-category="other">Други</button>
+                </div>
+                
+                <div class="items-container" id="items-container">
+                    <!-- Предметите ще бъдат добавени динамично тук -->
+                </div>
+            </div>
+            
+            <!-- Дясна част - Количка -->
+            <div class="cart-section">
+                <div class="cart-header">
+                    <h2><i class="fas fa-shopping-cart"></i> Вашата Количка</h2>
+                </div>
+                
+                <div class="cart-items" id="cart-items">
+                    <!-- Предметите в количката ще бъдат добавени тук -->
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Количката ви е празна</p>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-item">
+                        <span>Брой артикули:</span>
+                        <span id="items-count">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Обща сума:</span>
+                        <span id="total-price">0$</span>
+                    </div>
+                </div>
+                
+                <div class="payment-methods">
+                    <h3>Метод на плащане</h3>
+                    <div class="payment-options">
+                        <button class="payment-option selected" data-method="cash">
+                            <i class="fas fa-money-bill"></i>
+                            <span>В брой</span>
+                        </button>
+                        <button class="payment-option" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Карта</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button id="purchase-btn" class="purchase-btn">
+                    <i class="fas fa-check"></i> Завърши Покупката
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Известие за успешно плащане -->
+    <div id="success-popup" class="popup hidden">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="popup-text">
+                <h3>Успешно плащане!</h3>
+                <p>Вашата поръчка беше завършена успешно.</p>
+                <div class="popup-details">
+                    <div>Артикули: <span id="popup-items-count">0</span></div>
+                    <div>Обща сума: <span id="popup-total">0$</span></div>
+                    <div>Метод на плащане: <span id="popup-payment-method">В брой</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
